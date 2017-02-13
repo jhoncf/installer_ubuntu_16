@@ -1,1 +1,7 @@
-# installer_ubuntu_16
+# Ubuntu Installer
+
+# Como usar
+
+## Lamp
+  
+  ./installer lamp
