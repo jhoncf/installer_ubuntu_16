@@ -16,18 +16,44 @@ install_lamp(){
 	sudo mysql_secure_installation
 
 	echo "Instalando PHP";
-	sudo apt-get install php libapache2-mod-php php-mcrypt php-mysql
+	sudo apt-get install php libapache2-mod-php php-mcrypt php-mysql;
 
-	echo "Restart do apache para ativação do PHP"
-	sudo systemctl restart apache2
+	echo "Restart do apache para ativação do PHP";
+	sudo systemctl restart apache2;
+
+	exit 0;
+}
+
+install_mongodb(){
+	
+	echo "Importando public key"
+	sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6;
+	
+	echo "Adicionando source do repositório";
+	echo "deb [ arch=amd64,arm64 ] http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.4.list;
+	
+	echo "Update nos pacotes";	
+	sudo apt-get update;
+
+	echo "Instalando mongodb";
+	sudo apt-get install -y mongodb-org;
+
+        echo "Iniciando serviço";
+	sudo service mongod start;
+
+	exit 0;
 }
 
 case "$1" in
-"lamp")
-	install_lamp;
-    	;;
-*)
-	echo "Opção selecionada inválida";
-    	exit 1
-    	;;
+
+	"lamp")
+		install_lamp;
+    		;;
+	"mongodb")
+		install_mongodb;
+		;;
+	*)
+		echo "Opção selecionada inválida";
+    		exit 1
+    		;;
 esac
