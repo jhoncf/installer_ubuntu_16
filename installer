@@ -1,0 +1,33 @@
+#/bin/bash
+
+install_lamp(){
+
+	echo "Update nos pacotes";
+	sudo apt-get update;
+
+	echo "Instalando apache2";
+	sudo apt-get install apache2;
+
+	echo "Instalando curl";
+	sudo apt-get install curl;
+
+	echo "Instalando mysql-server";
+	sudo apt-get install mysql-server;
+	sudo mysql_secure_installation
+
+	echo "Instalando PHP";
+	sudo apt-get install php libapache2-mod-php php-mcrypt php-mysql
+
+	echo "Restart do apache para ativação do PHP"
+	sudo systemctl restart apache2
+}
+
+case "$1" in
+"lamp")
+	install_lamp;
+    	;;
+*)
+	echo "Opção selecionada inválida";
+    	exit 1
+    	;;
+esac
