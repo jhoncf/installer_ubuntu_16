@@ -26,7 +26,7 @@ install_lamp(){
 
 install_mongodb(){
 	
-	echo "Importando public key"
+	echo "Importando public key";
 	sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6;
 	
 	echo "Adicionando source do repositório";
@@ -44,6 +44,33 @@ install_mongodb(){
 	exit 0;
 }
 
+install_docker(){
+
+	echo "Update repositório";
+	sudo apt-get update;
+
+	echo "Importando public key";
+	sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D;
+
+	echo "Adicionando repositório docker à lista de source";
+	sudo apt-add-repository 'deb https://apt.dockerproject.org/repo ubuntu-xenial main';
+
+        echo "Update repositório";
+	sudo apt-get update;
+
+	echo "Instalando Docker";
+	sudo apt-get install -y docker-engine;
+
+	sudo systemctl status docker;
+
+	echo "Adicionando usuário atual ao grupo do docker";
+	sudo usermod -aG docker $(whoami);
+
+	echo "Done!";
+
+	exit 0;
+}
+
 case "$1" in
 
 	"lamp")
@@ -51,6 +78,9 @@ case "$1" in
     		;;
 	"mongodb")
 		install_mongodb;
+		;;
+	"docker")
+		install_docker;
 		;;
 	*)
 		echo "Opção selecionada inválida";
