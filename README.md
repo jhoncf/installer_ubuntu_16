@@ -1,8 +1,8 @@
 # Ubuntu Installer
 
-# Como usar
+## Como usar
 
-## Lamp
+### Lamp
   
   ``` 
   ./installer lamp 
