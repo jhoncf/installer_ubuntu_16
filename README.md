@@ -4,4 +4,6 @@
 
 ## Lamp
   
-  ./installer lamp
+  ``` 
+  ./installer lamp 
+  ```
