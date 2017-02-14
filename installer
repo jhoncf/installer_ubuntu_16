@@ -108,6 +108,12 @@ install_apidoc(){
 	sudo npm install apidoc -g;
 }
 
+install_fail2ban(){
+	sudo apt-get update;
+	sudo apt-get install fail2ban;
+	awk '{ printf "# "; print; }' /etc/fail2ban/jail.conf | sudo tee /etc/fail2ban/jail.local;
+}
+
 case "$1" in
 
 	"lamp")
@@ -130,6 +136,9 @@ case "$1" in
 		;;
 	"apidoc")
 		install_apidoc;
+		;;
+	"fail2ban")
+		install_fail2ban;
 		;;
 	*)
 		echo "Opção selecionada inválida";
