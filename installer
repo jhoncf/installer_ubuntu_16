@@ -100,8 +100,12 @@ install_nodejs(){
 
 	echo "";
 	echo "Finalizado!";
+}
 
-	exit 0;
+install_apidoc(){
+	install_nodejs;
+        sudo apt-get install nodejs-legacy;
+	sudo npm install apidoc -g;
 }
 
 case "$1" in
@@ -124,8 +128,13 @@ case "$1" in
 	"nodejs")
 		install_nodejs;
 		;;
+	"apidoc")
+		install_apidoc;
+		;;
 	*)
 		echo "Opção selecionada inválida";
     		exit 1
     		;;
 esac
+
+exit 0;
