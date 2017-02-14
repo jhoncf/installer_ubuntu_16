@@ -20,7 +20,7 @@
   ./installer docker 
   ```
   
-  ### Composer
+### Composer
   
   ``` 
   ./installer composer 
