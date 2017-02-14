@@ -84,6 +84,26 @@ install_composer(){
 	exit 0;
 }
 
+install_phpunit(){
+	cd ~/
+	wget https://phar.phpunit.de/phpunit.phar;
+	chmod +x phpunit.phar;
+	sudo mv phpunit.phar /usr/local/bin/phpunit;
+	phpunit --version;
+	exit 0;
+}
+
+install_nodejs(){
+	sudo apt-get update;
+	sudo apt-get install nodejs;
+	sudo apt-get install npm;
+
+	echo "";
+	echo "Finalizado!";
+
+	exit 0;
+}
+
 case "$1" in
 
 	"lamp")
@@ -97,6 +117,12 @@ case "$1" in
 		;;
 	"composer")
 		install_composer;
+		;;
+	"phpunit")
+		install_phpunit;
+		;;
+	"nodejs")
+		install_nodejs;
 		;;
 	*)
 		echo "Opção selecionada inválida";
