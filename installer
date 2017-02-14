@@ -71,6 +71,19 @@ install_docker(){
 	exit 0;
 }
 
+install_composer(){
+	echo "Update repositório";
+        sudo apt-get update;
+
+	sudo apt-get install curl php5-cli;
+	
+	curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer;
+
+	composer;
+
+	exit 0;
+}
+
 case "$1" in
 
 	"lamp")
@@ -81,6 +94,9 @@ case "$1" in
 		;;
 	"docker")
 		install_docker;
+		;;
+	"composer")
+		install_composer;
 		;;
 	*)
 		echo "Opção selecionada inválida";
