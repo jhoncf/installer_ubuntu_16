@@ -114,11 +114,62 @@ install_fail2ban(){
 	awk '{ printf "# "; print; }' /etc/fail2ban/jail.conf | sudo tee /etc/fail2ban/jail.local;
 }
 
-case "$1" in
+install_terminator(){
+	printf "Instalando Terminator \n\n";
+	sudo apt-get install -y terminator;
+	printf "\n\n Terminator Instalado\n\n";
+}
 
+install_google-chrome(){
+	printf "Instalando Google Chrome \n\n";
+	sudo apt-get install -y gdebi;
+	wget -P /tmp https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb;
+	sudo gdebi -n /tmp/google-chrome-stable_current_amd64.deb;
+	printf "\n\n Google Chrome Instalado\n\n";
+}
+
+install_vscode(){
+	printf "Instalando Visual Studio Code \n\n";
+	curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg;
+	sudo mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg;
+	sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list';
+	sudo apt-get update;
+	sudo apt-get install -y code;
+	printf "\n\n Visual Studio Code Instalado\n\n";
+}
+
+install_dock_plank(){
+		printf "Instalando Dock Plank \n\n";
+		sudo add-apt-repository -y ppa:ricotz/docky;
+		sudo apt-get update;
+		sudo apt-get install -y plank;
+		printf "\n\n Dock Plank Instalado\n\n";
+}
+
+install_theme(){
+	printf "Instalando Theme Arc \n\n";
+	wget -P /tmp https://github.com/LinxGem33/OSX-Arc-White/releases/download/v1.4.3/osx-arc-collection_1.4.3_amd64.deb;
+	sudo dpkg -i /tmp/osx-arc-collection_1.4.3_amd64.deb;
+	printf "\n\n Theme Arc Instalado  \n\n";
+}
+
+install_slack(){
+	printf "Instalando Slack \n\n";
+	wget -P /tmp https://downloads.slack-edge.com/linux_releases/slack-desktop-2.7.1-amd64.deb;
+}
+
+install_starter(){
+	install_terminator;
+	install_google-chrome;
+	install_vscode;
+	install_dock_plank;
+	install_theme;
+}
+
+case "$1" in
 	"lamp")
 		install_lamp;
-    		;;
+    	;;
 	"mongodb")
 		install_mongodb;
 		;;
@@ -140,10 +191,29 @@ case "$1" in
 	"fail2ban")
 		install_fail2ban;
 		;;
+	"vscode")
+		install_vscode;
+		;;
+	"google-chrome")
+		install_google-chrome;
+		;;
+	"theme")
+		install_theme;
+		;;
+	"starter")
+		sudo apt-get install -y chrome-gnome-shell;
+		install_starter;
+		;;
+	"terminator")
+		install_terminator;
+		;;
+	"dock_plank")
+		install_dock_plank;
+		;;
 	*)
 		echo "Opção selecionada inválida";
-    		exit 1
-    		;;
+    	exit 1
+    	;;
 esac
 
 exit 0;
