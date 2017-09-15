@@ -164,6 +164,13 @@ install_slack(){
 	sudo dpkg -i /tmp/slack-desktop-2.7.1-amd64.deb;
 }
 
+install_skype(){
+	printf "Instalando Skype \n\n";
+	wget -P /tmp https://go.skype.com/skypeforlinux-64-preview.deb;
+	sudo dpkg -i /tmp/skypeforlinux-64-preview.deb;
+	printf "\n\nSkype Instalado com Sucesso!\n\n";
+}
+
 install_starter(){
 	sudo apt-get update;
 	install_terminator;
@@ -172,6 +179,7 @@ install_starter(){
 	install_dock_plank;
 	install_theme;
 	install_slack;
+	install_skype;
 }
 
 case "$1" in
@@ -214,6 +222,9 @@ case "$1" in
 		;;
 	"terminator")
 		install_terminator;
+		;;
+	"skype")
+		install_skype;
 		;;
 	"dock_plank")
 		install_dock_plank;
