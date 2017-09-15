@@ -164,6 +164,7 @@ install_slack(){
 }
 
 install_starter(){
+	sudo apt-get update;
 	install_terminator;
 	install_google-chrome;
 	install_vscode;
