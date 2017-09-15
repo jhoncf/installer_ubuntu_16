@@ -161,6 +161,7 @@ install_theme(){
 install_slack(){
 	printf "Instalando Slack \n\n";
 	wget -P /tmp https://downloads.slack-edge.com/linux_releases/slack-desktop-2.7.1-amd64.deb;
+	sudo dpkg -i /tmp/slack-desktop-2.7.1-amd64.deb;
 }
 
 install_starter(){
