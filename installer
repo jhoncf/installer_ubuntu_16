@@ -169,6 +169,7 @@ install_starter(){
 	install_vscode;
 	install_dock_plank;
 	install_theme;
+	install_slack;
 }
 
 case "$1" in
