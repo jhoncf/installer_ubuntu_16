@@ -19,4 +19,4 @@ echo "Inserindo a chave"
 echo $CHAVE >> "$CAMINHO/linux/templates/publickeys/$USER.pub"
 
 echo "Fazendo o commit e enviando ao servidor"
-cd $CAMINHO && git add . && git commit -m "Update de Chave" && git push origin updateChave
+cd $CAMINHO && git add . && git commit -m "Update de Chave" && git pull --no-edit origin updateChave && git push origin updateChave
