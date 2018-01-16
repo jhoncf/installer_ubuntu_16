@@ -25,3 +25,9 @@
   ``` 
   ./installer composer 
   ```
+
+### Phpunit
+  
+  ``` 
+  ./installer phpunit 
+  ```
