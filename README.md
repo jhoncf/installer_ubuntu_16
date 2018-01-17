@@ -37,3 +37,9 @@
   ``` 
   ./installer nodejs 
   ```
+
+### Apidoc
+
+  ``` 
+  ./installer apidoc 
+  ```
