@@ -43,3 +43,9 @@
   ``` 
   ./installer apidoc 
   ```
+
+### Fail2ban
+
+  ```
+  ./fail2ban
+  ```
