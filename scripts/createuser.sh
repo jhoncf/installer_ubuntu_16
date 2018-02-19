@@ -3,10 +3,10 @@
 printf "Coloque o caminho do projeto: \n"
 read CAMINHO
 
-printf "Digite o nome do usu·rio: \n"
+printf "Digite o nome do usu√°rio: \n"
 read USER
 
-printf "Digite a chave do usu·rio: \n"
+printf "Digite a chave do usu√°rio: \n"
 read CHAVE
 
 echo "Criando a branch de update da chave e atualizando"
